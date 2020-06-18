@@ -6,9 +6,8 @@ load_dotenv()
 
 BOT_TOKEN = str(os.getenv("BOT_TOKEN"))
 
-WH_SERVER_PORT = str(os.getenv("WH_SERVER_PORT"))
 WH_SERVER_URL = str(os.getenv("WH_SERVER_URL")) if "WH_SERVER_URL" in list(
-    os.environ.keys()) else f"https://127.0.0.1:{WH_SERVER_PORT}/ "
+    os.environ.keys()) else None
 
 DB_CONF = {
     'host': str(os.getenv("DB_HOST")),

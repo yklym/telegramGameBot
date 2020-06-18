@@ -1,5 +1,5 @@
-from .user import dp
-# from .chat import dp
+from .user import bot
+# from .chat import bot
 
 
-__all__ = ["dp"]
+__all__ = ["bot"]

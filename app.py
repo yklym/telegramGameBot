@@ -4,17 +4,11 @@ import os
 import telebot
 from flask import Flask, request
 
-from data.config import BOT_TOKEN
-
-bot = telebot.TeleBot(BOT_TOKEN)
-
-
-@bot.message_handler(commands=['start'])
-def start(message):
-    bot.reply_to(message, 'Hello, ' + message.from_user.first_name)
-
+from data.config import BOT_TOKEN, WH_SERVER_URL
+from handlers import bot
 
 if __name__ == "__main__":
+    # Starting server for webhooks in case its on deploy
     if "HEROKU" in list(os.environ.keys()):
         logger = telebot.logger
         telebot.logger.setLevel(logging.INFO)
@@ -31,11 +25,12 @@ if __name__ == "__main__":
         @server.route("/")
         def webhook():
             bot.remove_webhook()
-            bot.set_webhook(url='https://secrethitlertg.herokuapp.com/' + BOT_TOKEN)
+            bot.set_webhook(url=WH_SERVER_URL + BOT_TOKEN)
             return "?", 200
 
 
         server.run(host="0.0.0.0", port=os.environ.get('PORT', 80))
     else:
+        # if development start long poling
         bot.remove_webhook()
         bot.polling(none_stop=True)
