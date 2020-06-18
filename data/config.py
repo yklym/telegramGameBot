@@ -6,6 +6,9 @@ load_dotenv()
 
 BOT_TOKEN = str(os.getenv("BOT_TOKEN"))
 
+WH_SERVER_URL = str(os.getenv("WH_SERVER_URL"))
+WH_SERVER_PORT = str(os.getenv("WH_SERVER_PORT"))
+
 DB_CONF = {
     'host': str(os.getenv("DB_HOST")),
     'user': str(os.getenv("DB_USER")),
