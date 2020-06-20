@@ -4,7 +4,7 @@ import os
 import telebot
 from flask import Flask, request
 
-from data.config import BOT_TOKEN, WH_SERVER_URL
+from data.config import BOT_TOKEN, WH_SERVER_URL, SERVER_PORT
 from handlers import bot
 
 if __name__ == "__main__":
@@ -29,7 +29,7 @@ if __name__ == "__main__":
             return "?", 200
 
 
-        server.run(host="0.0.0.0", port=os.environ.get('PORT', 80))
+        server.run(host="0.0.0.0", port=SERVER_PORT)
     else:
         # if development start long poling
         bot.remove_webhook()
