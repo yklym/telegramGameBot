@@ -1,5 +1,5 @@
 from db.dbController import dbController
-from handlers.utils.admin import notify_admin_chat
+from handlers.utils.admin_notify import notify_admin_chat
 from loader import bot
 
 
