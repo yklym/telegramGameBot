@@ -1,0 +1,1 @@
+from .default_commands import bot
