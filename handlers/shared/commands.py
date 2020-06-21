@@ -23,4 +23,4 @@ def get_id(message):
 @bot.message_handler(commands=['cat'])
 def get_random_cat(message):
     response = requests.get(cat_api_url)
-    bot.send_photo(message.from_user.id, response.json()[0]["url"])
+    bot.send_photo(message.chat.id, response.json()[0]["url"])
