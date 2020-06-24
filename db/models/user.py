@@ -1,8 +1,7 @@
-from sqlalchemy import Column, Integer, String
+from sqlalchemy import Column, Integer, String, ForeignKey
+from sqlalchemy.orm import relationship
 
-from sqlalchemy.ext.declarative import declarative_base
-
-Base = declarative_base()
+from .base import Base
 
 
 class User(Base):
@@ -12,6 +11,8 @@ class User(Base):
     name = Column(String)
     fullname = Column(String)
     nickname = Column(String)
+    curr_game = relationship("Game", back_populates="all_players")
+    curr_game_id = Column(Integer, ForeignKey('games.id'))
 
     def __repr__(self):
         return "<User(name='%s', fullname='%s', nickname='%s')>" % (

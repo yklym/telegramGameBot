@@ -14,7 +14,7 @@ class DbController:
     def add_user(self, user):
         new_user = User(id=user.id, name=user.first_name,
                         fullname=user.first_name + user.last_name if user.last_name else "",
-                        nickname=user.username)
+                        nickname=user.username, curr_game=None)
         session.add(new_user)
         session.commit()
 
