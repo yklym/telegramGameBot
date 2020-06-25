@@ -6,7 +6,7 @@ from ..utils.filters import isGroup
 
 @bot.message_handler(func=isGroup, commands=['start'])
 def start(message):
-    if not dbController.get_user(message.from_user):
+    if not message.db_user:
         dbController.add_user(message.from_user)
         notify_admin_chat(bot, f"User @{message.from_user.username} was added to the db")
 

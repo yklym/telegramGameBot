@@ -1,17 +1,11 @@
 import requests
 
-from db.dbController import dbController
-from handlers.utils.admin_notify import notify_admin_chat
-from loader import bot
 from data.config import cat_api_url
+from loader import bot
+
 
 @bot.message_handler(commands=['chat_info'])
 def get_id(message):
-    print("Hello")
-    if not dbController.get_user(message.from_user):
-        dbController.add_user(message.from_user)
-        notify_admin_chat(bot, f"User @{message.from_user.username} was added to the db")
-
     bot.reply_to(message,
                  f'Hello, {message.from_user.first_name}\n'
                  f'Your id: {message.from_user.id}\n'

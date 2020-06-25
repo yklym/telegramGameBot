@@ -8,7 +8,7 @@ Base = declarative_base()
 
 engine = create_engine(
     f'postgresql://{DB_CONF["user"]}:{DB_CONF["password"]}@{DB_CONF["host"]}:{DB_CONF["port"]}/{DB_CONF["database"]}',
-    echo=True)
+    echo=False)
 
 Session = sessionmaker(bind=engine)
 session = Session()
