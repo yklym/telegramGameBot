@@ -1,5 +1,5 @@
 from db.loader import session
-from db.models.user import User
+from db.models import User, Game
 
 
 class DbController:
@@ -14,9 +14,19 @@ class DbController:
     def add_user(self, user):
         new_user = User(id=user.id, name=user.first_name,
                         fullname=user.first_name + user.last_name if user.last_name else "",
-                        nickname=user.username, curr_game=None)
+                        username=user.username, curr_game=None)
         session.add(new_user)
         session.commit()
+
+    def create_game(self, creator):
+        creator_info = self.get_user(creator)
+        new_game = Game(creator=creator_info)
+
+        session.add(new_game)
+        session.commit()
+        return new_game
+
+    # def get_game_by_user(self, user):
 
 
 dbController = DbController(session)
