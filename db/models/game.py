@@ -9,8 +9,7 @@ class Game(Base):
 
     id = Column(Integer, primary_key=True)
     state = Column(String, default="lobby")
-
-    # backref = backref("creator_to", uselist=False)
+    main_chat_id = Column(Integer)
 
     president = relationship("User", primaryjoin="and_(Game.id==User.curr_game_id, "
                                                  "User.curr_game_is_president==True)",

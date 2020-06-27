@@ -21,7 +21,6 @@ class User(Base):
     curr_game_status = Column(String)
     curr_game_role = Column(String)
     curr_game_membership = Column(String)
-    # curr_game_is_admin = Column(Boolean)
     curr_game_is_president = Column(Boolean)
     curr_game_is_vice_president = Column(Boolean)
 
