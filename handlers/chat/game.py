@@ -1,11 +1,24 @@
 from db.dbController import dbController
 from loader import bot
+from ..utils.filters import isGroup
 
-
-# @todo Check if user has no more active games
-@bot.message_handler(commands=['create_game'])
+# function=isGroup
+@bot.message_handler(commands=['game_create'])
 def create_game(message):
-    new_game = dbController.create_game(message.from_user)
+    print(message.db_user)
+    if message.db_user.curr_game:
+        bot.reply_to(message, "You can't create new game before finishing your previous one ")
+        return
     # notify_admin_chat(bot, f"User @{message.from_user.username} created new game")
+    new_game = dbController.create_game(message.db_user, message.chat.id)
     bot.reply_to(message, f"game created successfully, game id:{new_game.id}\ncreator: {new_game.creator}")
 
+@bot.message_handler(commands=['game_info'])
+def create_game(message):
+    print(message.db_user)
+    if message.db_user.curr_game:
+        bot.reply_to(message, "You can't create new game before finishing your previous one ")
+        return
+    # notify_admin_chat(bot, f"User @{message.from_user.username} created new game")
+    new_game = dbController.create_game(message.db_user, message.chat.id)
+    bot.reply_to(message, f"game created successfully, game id:{new_game.id}\ncreator: {new_game.creator}")

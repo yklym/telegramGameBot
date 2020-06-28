@@ -3,7 +3,8 @@ commands_list = [
     {"command": "start", "description": "press start"},
     {"command": "chat_info", "description": "get chat and your ids"},
     {"command": "cat", "description": "meow "},
-    {"command": "create_game", "description": "Use it in chat to create a game"},
+    {"command": "game_create", "description": "Use it in chat to create a game"},
+    {"command": "game_info", "description": "Get game info"},
 ]
 
 commands_str_list = ["/" + elem["command"] for elem in commands_list]

@@ -8,7 +8,7 @@ from handlers.utils.filters import isPrivateChat
 def start(message):
     if not message.db_user:
         dbController.add_user(message.from_user)
-        notify_admin_chat(bot, f"User @{message.from_user.username} was added to the db")
+        # notify_admin_chat(bot, f"User @{message.from_user.username} was added to the db")
 
     bot.reply_to(message,
                  f'Hello, {message.from_user.first_name}\n'
