@@ -10,6 +10,7 @@ class Game(Base):
     id = Column(Integer, primary_key=True)
     state = Column(String, default="lobby")
     main_chat_id = Column(Integer)
+    main_message_id = Column(Integer)
 
     president = relationship("User", primaryjoin="and_(Game.id==User.curr_game_id, "
                                                  "User.curr_game_is_president==True)",

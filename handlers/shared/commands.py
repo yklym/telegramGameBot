@@ -1,7 +1,7 @@
 import requests
 
 from data.config import cat_api_url
-from data.text.command import chat_info_text
+from data.text.default_commands import chat_info_text
 from loader import bot
 
 
