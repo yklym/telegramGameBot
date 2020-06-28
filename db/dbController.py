@@ -18,10 +18,11 @@ class DbController:
         session.add(new_user)
         session.commit()
 
-    def create_game(self, creator):
-        creator_info = self.get_user(creator)
-        new_game = Game(creator=creator_info)
-
+    def create_game(self, creator, main_chat_id):
+        creator_info = creator
+        new_game = Game(main_chat_id=main_chat_id)
+        new_game.creator = creator_info
+        new_game.players.append(creator_info)
         session.add(new_game)
         session.commit()
         return new_game

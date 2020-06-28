@@ -1,17 +1,13 @@
 import requests
 
 from data.config import cat_api_url
+from data.text.command import chat_info_text
 from loader import bot
 
 
 @bot.message_handler(commands=['chat_info'])
-def get_id(message):
-    bot.reply_to(message,
-                 f'Hello, {message.from_user.first_name}\n'
-                 f'Your id: {message.from_user.id}\n'
-                 f'Chat type: {message.chat.type}\n'
-                 f'Chat id: {message.chat.id}\n'
-                 f'This is template for private chat')
+def chat_info(message):
+    bot.reply_to(message, chat_info_text(message))
 
 
 @bot.message_handler(commands=['cat'])

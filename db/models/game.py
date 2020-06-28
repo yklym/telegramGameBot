@@ -20,5 +20,5 @@ class Game(Base):
                                   backref=backref("vice_president_to", uselist=False))
 
     def __repr__(self):
-        return "<Game(id='%s' state='%s' all_players='%s' president='%s' vice_president='%s')>" % (
-            self.id, self.state, self.players, self.president, self.vice_president)
+        return "<Game(id='%s' state='%s' all_players='%s' president='%s' vice_president='%s' creator='%s')>" % (
+            self.id, self.state, self.players, self.president, self.vice_president, self.creator)

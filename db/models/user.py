@@ -9,7 +9,7 @@ class User(Base):
 
     id = Column(Integer, primary_key=True)
     name = Column(String)
-    fullname = Column(String)
+    fullname = Column(String, default="")
     username = Column(String)
 
     curr_game_id = Column(Integer, ForeignKey('games.id'))
@@ -25,5 +25,5 @@ class User(Base):
     curr_game_is_vice_president = Column(Boolean)
 
     def __repr__(self):
-        return "<User(name='%s', fullname='%s', username='%s', curr_game='%s')>" % (
-            self.name, self.fullname, self.username, self.curr_game)
+        return "<User(name='%s', fullname='%s', username='%s', curr_game_id='%s')>" % (
+            self.name, self.fullname, self.username, self.curr_game_id)
