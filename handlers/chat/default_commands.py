@@ -1,10 +1,10 @@
 from db.dbController import dbController
 from handlers.utils.admin_notify import notify_admin_chat
 from loader import bot
-from ..utils.filters import isGroup
+from ..utils.filters import is_group
 
 
-@bot.message_handler(func=isGroup, commands=['start'])
+@bot.message_handler(func=is_group, commands=['start'])
 def start(message):
     if not message.db_user:
         dbController.add_user(message.from_user)

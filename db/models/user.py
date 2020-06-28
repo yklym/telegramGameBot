@@ -9,7 +9,7 @@ class User(Base):
 
     id = Column(Integer, primary_key=True)
     name = Column(String)
-    fullname = Column(String)
+    fullname = Column(String, default="")
     username = Column(String)
 
     curr_game_id = Column(Integer, ForeignKey('games.id'))

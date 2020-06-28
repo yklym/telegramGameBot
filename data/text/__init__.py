@@ -1,1 +1,0 @@
-from .command import text as command
