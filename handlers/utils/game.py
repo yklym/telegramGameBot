@@ -8,8 +8,6 @@ def update_main_message(bot, game):
 
 
 def notify_players_about_start(bot, game):
-    print("GAME")
-    print(game.hitler)
     for player in game.players:
         try:
             bot.send_message(player.id, text=notify_player_about_start_text(game, player, game.hitler[0]), parse_mode="HTML")
