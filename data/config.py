@@ -22,10 +22,10 @@ DB_CONF = {
     'port': str(os.getenv("DB_PORT"))
 }
 
-game = {
+GAME_INIT_SETTINGS = {
     "acts": {
         "fascist": 11,
-        "liberal": 20
+        "liberal": 6
     },
     "max_players": 10,
     "min_players": 5,

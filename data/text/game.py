@@ -34,3 +34,17 @@ def accept_game(game_id):
 
 def game_accepted(game_id):
     return f"Game #{game_id} was accepted successfully!"
+
+
+def notify_player_about_start_text(game, player_info, hitler_info):
+    # todo finish this
+    tasks = {
+        "liberal": "Kill all nazi",
+        "fascist": f"Kill all liberal swines and protect {hitler_info.fullname}",
+        "hitler": "Rule the world"
+    }
+
+    return ("Game {g.id} was started.\n" +
+            "Your membership is {p.curr_game_membership}\n" +
+            ("You will be also acting as a <b>SECRET HITLER</b>" if player_info.curr_game_is_hitler else "") +
+            "\nYOUR TASK FOR THE GAME:\n---------------\n").format(g=game, p=player_info)

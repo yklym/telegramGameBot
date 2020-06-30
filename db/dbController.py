@@ -1,3 +1,6 @@
+import random
+
+from data.config import GAME_INIT_SETTINGS
 from db.loader import session
 from db.models import User, Game
 
@@ -25,7 +28,7 @@ class DbController:
 
     def add_user(self, user):
         new_user = User(id=user.id, name=user.first_name,
-                        fullname=user.first_name + " " + user.last_name if user.last_name else "",
+                        fullname=user.first_name + " " + (user.last_name if user.last_name else ""),
                         username=user.username, curr_game=None)
         session.add(new_user)
         session.commit()
@@ -50,15 +53,53 @@ class DbController:
         game.players.append(user)
         session.commit()
         return game
-    # def get_game_by_user(self, user):
 
     def init_game(self, game_id):
         # TODO finish this
         game = self.get_game_by_id(game_id)
         game.state = "play"
-        game.acts =create_acts_str(10)
+        game.acts = create_acts_str()
+        init_players_roles(game)
+        session.commit()
+        return game
+
 
 dbController = DbController(session)
 
-def create_acts_str(amount):
-    return ""
+
+# todo that it in new utils
+def create_acts_str():
+    acts_str = list(GAME_INIT_SETTINGS["acts"]["fascist"] * "f" + GAME_INIT_SETTINGS["acts"]["liberal"] * "l")
+    random.shuffle(acts_str)
+    return acts_str
+
+
+def init_players_roles(game):
+    players_list = game.players
+    liberal_amount = len(players_list) // 2 + 1
+    if len(players_list) <= 2:
+        liberal_amount = 1
+    fascists_amount = len(players_list) - liberal_amount
+
+    hitler_index = random.randint(0, fascists_amount-1)
+    print("ddd", liberal_amount, fascists_amount, hitler_index)
+
+    roles_index_list = {index: {"is_hitler": False, "membership": "liberal"} for index in
+                        [i for i in range(len(players_list))]}
+
+    random.shuffle(roles_index_list)
+
+    for i in range(fascists_amount):
+        roles_index_list[i]["membership"] = "fascist"
+        if i == hitler_index:
+            roles_index_list[i]["is_hitler"] = True
+
+    for i in range(len(players_list)):
+        print("i\n")
+
+        player = players_list[i]
+        player.curr_game_status = "prevote"
+        player.curr_game_is_hitler = True if roles_index_list[i]["is_hitler"] else False
+        player.curr_game_membership = roles_index_list[i]["membership"]
+        player.curr_game_is_president = False
+        player.curr_game_is_vice_president = False

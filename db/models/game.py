@@ -18,6 +18,10 @@ class Game(Base):
     liberal_act_count = Column(Integer, default=0)
     rejected_elections = Column(Integer, default=0)
 
+    hitler = relationship("User", primaryjoin="and_(Game.id==User.curr_game_id, "
+                                              "User.curr_game_is_hitler==True)",
+                          backref=backref("hitler_to", uselist=False))
+
     president = relationship("User", primaryjoin="and_(Game.id==User.curr_game_id, "
                                                  "User.curr_game_is_president==True)",
                              backref=backref("president_to", uselist=False))

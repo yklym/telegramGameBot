@@ -19,8 +19,8 @@ class User(Base):
     game_creator_to = relationship("Game", foreign_keys=[game_creator_to_id], backref=backref("creator", uselist=False))
 
     curr_game_status = Column(String)
-    curr_game_role = Column(String)
     curr_game_membership = Column(String)
+    curr_game_is_hitler = Column(Boolean)
     curr_game_is_president = Column(Boolean)
     curr_game_is_vice_president = Column(Boolean)
 
