@@ -12,6 +12,12 @@ class Game(Base):
     main_chat_id = Column(Integer)
     main_message_id = Column(Integer)
 
+    acts = Column(String, default="")
+
+    fascist_act_count = Column(Integer, default=0)
+    liberal_act_count = Column(Integer, default=0)
+    rejected_elections = Column(Integer, default=0)
+
     president = relationship("User", primaryjoin="and_(Game.id==User.curr_game_id, "
                                                  "User.curr_game_is_president==True)",
                              backref=backref("president_to", uselist=False))

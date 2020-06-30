@@ -21,3 +21,12 @@ DB_CONF = {
     'password': str(os.getenv("DB_PASSWORD")),
     'port': str(os.getenv("DB_PORT"))
 }
+
+game = {
+    "acts": {
+        "fascist": 11,
+        "liberal": 20
+    },
+    "max_players": 10,
+    "min_players": 5,
+}

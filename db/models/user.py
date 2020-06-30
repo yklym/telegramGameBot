@@ -27,3 +27,5 @@ class User(Base):
     def __repr__(self):
         return "<User(name='%s', fullname='%s', username='%s', curr_game_id='%s')>" % (
             self.name, self.fullname, self.username, self.curr_game_id)
+
+

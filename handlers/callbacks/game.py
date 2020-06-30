@@ -15,6 +15,7 @@ def test_callback(call):
         bot.send_message(call.message.chat.id, f"{call.from_user.username}" + warnings["user_not_authorized"])
 
 
+# accept_game_gameId
 @bot.callback_query_handler(func=lambda call: "accept_game" in call.data)
 def accept_game_func(call):
     # print(call)

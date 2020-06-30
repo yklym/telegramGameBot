@@ -52,5 +52,13 @@ class DbController:
         return game
     # def get_game_by_user(self, user):
 
+    def init_game(self, game_id):
+        # TODO finish this
+        game = self.get_game_by_id(game_id)
+        game.state = "play"
+        game.acts =create_acts_str(10)
 
 dbController = DbController(session)
+
+def create_acts_str(amount):
+    return ""
