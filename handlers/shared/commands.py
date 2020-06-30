@@ -2,7 +2,7 @@ import requests
 
 from data.config import cat_api_url
 from data.text.default_commands import chat_info_text
-from data.text.rules import get_rules
+from ..utils.commands import update_rules_message
 from loader import bot
 
 
@@ -18,5 +18,5 @@ def get_random_cat(message):
 
 @bot.message_handler(commands=['rules'])
 def show_rules(message):
-    page = int(message.text.split(' ')[-1]) -1
-    bot.send_message(message.chat.id,get_rules()[page],parse_mode='html')
+    rules_message = bot.send_message(message.chat.id, "Init rules")
+    update_rules_message(0,'right',bot, message.chat.id, rules_message.message_id)
