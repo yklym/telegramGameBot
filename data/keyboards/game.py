@@ -11,3 +11,4 @@ def accept_invitation_keyboard(game_id):
     accept_kb = types.InlineKeyboardMarkup()
     accept_kb.add(types.InlineKeyboardButton("Accept game!", callback_data="accept_game_" + str(game_id)))
     return accept_kb
+
